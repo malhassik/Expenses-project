@@ -3,4 +3,4 @@ __pycache__/
 .env
 *.log
 summary.json
-students.csv
+expenses.csv
