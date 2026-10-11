@@ -10,35 +10,29 @@ for line in expenses_json:
     expenses_amount.append(line["amount"])
 
 # Вывод всех сумм
-print("------")
-print(f"Все суммы: {expenses_amount}")
-print("------")
+print(f"Всего расходов: {len(expenses_json)}")
+print(f"Общая сумма: {sum(expenses_amount)}")
 
-expenses_category_eda = []
-expenses_category_transport = []
-expenses_category_razvlechenia = []
+expenses_category_sums = {}
 
-for line in expenses_json:
-    if line["category"] == "еда":
-        expenses_category_eda.append(line["amount"])
-    elif line["category"] == "транспорт":
-        expenses_category_transport.append(line["amount"])
-    elif line["category"] == "развлечения":
-        expenses_category_razvlechenia.append(line["amount"])
+for expense in expenses_json:
+    cat = expense["category"]
+    amount = expense["amount"]
+    if cat in expenses_category_sums:
+        expenses_category_sums[cat] += amount
+    else:
+        expenses_category_sums[cat] = amount
 
 # Выводит суммы по категориям
-print("------")
-print(f"Сумма еды: {sum(expenses_category_eda)}")
-print(f"Сумма транспорта: {sum(expenses_category_transport)}")
-print(f"Сумма развлечений: {sum(expenses_category_razvlechenia)}")
-print("------")
+print(expenses_category_sums)
 
 # Сохраняет сводку в summary.json
 summary = {
-    "amounts": expenses_amount,
-    "sum_eda": expenses_category_eda,
-    "sum_transport": expenses_category_transport,
-    "sum_eazvlechenia": expenses_category_razvlechenia,
+    "total_count": len(expenses_json),
+    "total_sum": sum(expenses_amount),
+    "average": round(sum(expenses_amount) / len(expenses_json), 2),
+    "max_expense": max(expenses_json, key=lambda e: e["amount"]),
+    "by_category": expenses_category_sums,
 }
 
 with open("summary.json", "w", encoding="utf-8") as file:
