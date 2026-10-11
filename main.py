@@ -31,3 +31,13 @@ print(f"Сумма еды: {sum(expenses_category_eda)}")
 print(f"Сумма транспорта: {sum(expenses_category_transport)}")
 print(f"Сумма развлечений: {sum(expenses_category_razvlechenia)}")
 print("------")
+
+summary = {
+    "amounts": expenses_amount,
+    "sum_eda": expenses_category_eda,
+    "sum_transport": expenses_category_transport,
+    "sum_eazvlechenia": expenses_category_razvlechenia,
+}
+
+with open("summary.json", "w", encoding="utf-8") as file:
+    json.dump(summary, file, ensure_ascii=False, indent=2)
