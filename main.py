@@ -32,6 +32,7 @@ print(f"Сумма транспорта: {sum(expenses_category_transport)}")
 print(f"Сумма развлечений: {sum(expenses_category_razvlechenia)}")
 print("------")
 
+# Сохраняет сводку в summary.json
 summary = {
     "amounts": expenses_amount,
     "sum_eda": expenses_category_eda,
@@ -41,3 +42,5 @@ summary = {
 
 with open("summary.json", "w", encoding="utf-8") as file:
     json.dump(summary, file, ensure_ascii=False, indent=2)
+
+# Экспортирует все расходы в expenses.csv
