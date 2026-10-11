@@ -8,8 +8,9 @@ with open("expenses.json", encoding="utf-8") as file:
 for line in expenses_json:
     expenses_amount.append(line["amount"])
 
+# Вывод всех сумм
 print("------")
-print(f"Все суммы: {expenses_amount}")  # Вывод всех сумм
+print(f"Все суммы: {expenses_amount}")
 print("------")
 
 expenses_category_eda = []
@@ -24,8 +25,9 @@ for line in expenses_json:
     elif line["category"] == "развлечения":
         expenses_category_razvlechenia.append(line["amount"])
 
+# Выводит суммы по категориям
 print("------")
-print(f"Сумма еды: {sum(expenses_category_eda)}")  # Вывод всех сумм
-print(f"Сумма транспорта: {sum(expenses_category_transport)}")  # Вывод всех сумм
-print(f"Сумма развлечений: {sum(expenses_category_razvlechenia)}")  # Вывод всех сумм
+print(f"Сумма еды: {sum(expenses_category_eda)}")
+print(f"Сумма транспорта: {sum(expenses_category_transport)}")
+print(f"Сумма развлечений: {sum(expenses_category_razvlechenia)}")
 print("------")
