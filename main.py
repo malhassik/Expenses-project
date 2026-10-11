@@ -1,4 +1,5 @@
 import json
+import csv
 
 expenses_amount = []
 
@@ -44,3 +45,7 @@ with open("summary.json", "w", encoding="utf-8") as file:
     json.dump(summary, file, ensure_ascii=False, indent=2)
 
 # Экспортирует все расходы в expenses.csv
+with open("expenses.csv", "w", encoding="utf-8", newline="") as file:
+    write = csv.DictWriter(file, fieldnames=["date", "category", "amount"])
+    write.writeheader()
+    write.writerows(expenses_json)
